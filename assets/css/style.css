@@ -1,0 +1,21 @@
+body {
+    background-image: url('http://media.cmgdigital.com/shared/img/photos/2015/11/18/8b/9d/concert-crowd-crop.jpg');
+    background-size: cover;
+    height: 100vh;
+    font-family: 'Maven Pro', sans-serif;
+
+}
+
+#jumbo-row {
+    margin-top: 8% !important;
+}
+
+.jumbotron {
+    opacity: .95;
+    box-shadow: 0px 0px 5px 2px black;
+}
+
+#go:hover {
+    box-shadow: 0px 0px 5px 2px white;
+    cursor: pointer;
+}

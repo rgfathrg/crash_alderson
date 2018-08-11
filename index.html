@@ -5,15 +5,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Travel-O-Lette</title>
     <!-- Bootstrap CDN -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
         crossorigin="anonymous">
+    <!--css-->
+    <link rel="stylesheet" href="assets/css/style.css">
     <!-- jQuery Link -->
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
         crossorigin="anonymous"></script>
-    <!-- Javascript Link -->
-    <script src="assets/js/main.js"></script>
-    <title>Travel-O-Lette</title>
+    <!--Javascript-->
+    <script type="text/javascript" src="assets/js/main.js"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Maven+Pro" rel="stylesheet">
 </head>
 
 <body>
@@ -21,7 +25,6 @@
     <nav class="navbar bg-dark navbar-dark">
         <!-- Brand -->
         <a class="navbar-brand" href="#">Travel-O-Lette</a>
-
         <!-- Toggler/collapsibe Button -->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
             <span class="navbar-toggler-icon"></span>
@@ -31,17 +34,22 @@
         <div class="collapse navbar-collapse" id="collapsibleNavbar">
             <ul class="navbar-nav">
                 <li class="nav-item text-right nav-link">
-                    <a class="nav-link" href="Home">Link</a>
+                    <a class="nav-link" href="Home">Home</a>
                 </li>
                 <li class="nav-item text-right nav-link">
-                    <a class="nav-link" href="Saved">Link</a>
+                    <a class="nav-link" href="Saved">Trips</a>
                 </li>
             </ul>
         </div>
     </nav>
-
-    <div class="jumbotron text-center">
-        <h1>Travel-O-Lette</h1>
+    <div class="container">
+        <div class="row" id="jumbo-row">
+            <div class="jumbotron mx-auto my-3 bg-dark text-light" style="width: 50%; text-align: center">
+                <h1 class="display-4">Travel-O-Lette</h1>
+                <p class="lead">Awesomeness Awaits!</p><br>
+                <a class="btn btn-primary btn-lg" href="#" role="button" style="width: 50%" id="go">GO!</a>
+            </div>
+        </div>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -50,7 +58,6 @@
         crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
         crossorigin="anonymous"></script>
-
 </body>
 
 </html>
