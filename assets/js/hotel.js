@@ -81,14 +81,19 @@ function initMap() {
     });
   places = new google.maps.places.PlacesService(map);
   autocomplete.addListener('place_changed', onPlaceChanged);
+  
   // Add a DOM event listener to react when the user selects a country.
   document.getElementById('country').addEventListener(
     'change', setAutocompleteCountry);
 }
+
+
 // When the user selects a city, get the place details for the city and
 // zoom the map in on the city.
 function onPlaceChanged() {
   var place = autocomplete.getPlace();
+  console.log(place.vicinity);
+  console.log(autocomplete.getPlace());
   if (place.geometry) {
     map.panTo(place.geometry.location);
     map.setZoom(15);
@@ -97,6 +102,7 @@ function onPlaceChanged() {
     document.getElementById('autocomplete').placeholder = 'Enter a city';
   }
 }
+
 // Search for hotels in the selected city, within the viewport of the map.
 function search() {
   var search = {
