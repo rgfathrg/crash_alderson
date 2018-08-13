@@ -11,5 +11,11 @@ $(document).ready(function() {
         }).then(function(response) {;
             console.log(response)
             console.log(response._embedded.events);
+            
         });
+    });
+    
+    $("#go").on("click", function() {
+        $("#autocomplete").val("Charlotte, NC, USA")
+        console.log($('#autocomplete').val());
     });
