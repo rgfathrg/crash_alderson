@@ -4,7 +4,9 @@ body {
     height: 100vh;
     font-family: 'Maven Pro', sans-serif;
 }
-
+.map{
+  height: 200px;
+}
 
 #jumbo-row {
     
