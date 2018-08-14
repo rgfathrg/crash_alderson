@@ -25,22 +25,29 @@ $(document).ready(function () {
             // async:true,
             // dataType: "json",
         }).then(function (response) {
-            $(".img").empty();
+            $("#events").empty();
             console.log(response)
             console.log(response._embedded.events);
             console.log(response._embedded.events[0].images);
             var events = response._embedded.events;
             for (var i = 0; i < events.length; i++) {
-                var picButton = $("<button>").attr("type", "button");
+
+                var card = $("<div>").attr("style", "width: 18rem;").addClass("border float-left");
+                var cardBody = $("<div>").attr("class", "card-body");
+                var eventDates = events[i].dates.start.localDate;
+                var eventTime = events[i].dates.start.localTime;
                 var eventPics = events[i].images[0].url;
                 var eventTitle = events[i].name;
                 var p = $("<p>");
-                p.text(eventTitle);
-                var img = $("<img>");
+                // var p1 = $("<p>")
+                p.html(eventTitle + "<br>" + eventDates + "<br>" + eventTime);
+                var img = $("<img>").attr("class", "card-img-top");
                 img.attr("src", eventPics);
-                picDiv.prepend(p);
-                picDiv.prepend(img);
-                $(".img").append(picDiv);
+                cardBody.append(p);
+                card.append(img);
+                card.append(cardBody);
+
+                $("#events").append(card);
                 //console.log(response._embedded.events.dates.localDate);
             }
         });
