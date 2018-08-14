@@ -9,6 +9,7 @@ $(document).ready(function () {
 
 
     $("#go").on("click", function () {
+      
         var randomCity = Math.floor(Math.random() * cities.length);
         city = cities[randomCity];
         console.log(city);
@@ -46,6 +47,7 @@ $(document).ready(function () {
                 cardBody.append(p);
                 card.append(img);
                 card.append(cardBody);
+    
 
                 $("#events").append(card);
                 //console.log(response._embedded.events.dates.localDate);
