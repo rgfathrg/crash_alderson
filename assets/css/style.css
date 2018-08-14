@@ -1,7 +1,5 @@
 body {
-    background: url('http://media.cmgdigital.com/shared/img/photos/2015/11/18/8b/9d/concert-crowd-crop.jpg') no-repeat;
-    background-size: cover;
-    height: 100vh;
+    
     font-family: 'Maven Pro', sans-serif;
 }
 .map{
@@ -9,7 +7,9 @@ body {
 }
 
 #jumbo-row {
-    
+  background: url('http://media.cmgdigital.com/shared/img/photos/2015/11/18/8b/9d/concert-crowd-crop.jpg') no-repeat;
+  background-size: cover;
+  height: 100vh;
     /* margin-top: 8% !important; */
     margin: 0 !important;
 }
