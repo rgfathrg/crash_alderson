@@ -9,9 +9,28 @@ $(document).ready(function () {
 
 
     $("#go").on("click", function () {
+        //prevents page from scrolling to top
+        event.preventDefault();
+      
         var randomCity = Math.floor(Math.random() * cities.length);
         city = cities[randomCity];
         console.log(city);
+      
+        //finds random city and adds marker for hotels using 'geocoder'
+        var geocoder = new google.maps.Geocoder();
+
+        var randomCity = Math.floor(Math.random() * cities.length);
+        city = cities[randomCity];
+        console.log(city);
+        
+    
+        geocoder.geocode({address:city},function(results){
+            map.setCenter(results[0].geometry.location);
+            map.setZoom(10);
+            search();
+
+        })
+    
 
 
         $.ajax({
@@ -25,6 +44,7 @@ $(document).ready(function () {
             // async:true,
             // dataType: "json",
         }).then(function (response) {
+            console.log('hello');
             $("#events").empty();
             console.log(response)
             console.log(response._embedded.events);
@@ -44,8 +64,9 @@ $(document).ready(function () {
                 var img = $("<img>").attr("class", "card-img-top");
                 img.attr("src", eventPics);
                 cardBody.append(p);
-                card.append(img);
+                card.append(img);ter
                 card.append(cardBody);
+    
 
                 $("#events").append(card);
                 //console.log(response._embedded.events.dates.localDate);
