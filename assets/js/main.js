@@ -9,10 +9,28 @@ $(document).ready(function () {
 
 
     $("#go").on("click", function () {
+        //prevents page from scrolling to top
+        event.preventDefault();
       
         var randomCity = Math.floor(Math.random() * cities.length);
         city = cities[randomCity];
         console.log(city);
+      
+        //finds random city and adds marker for hotels using 'geocoder'
+        var geocoder = new google.maps.Geocoder();
+
+        var randomCity = Math.floor(Math.random() * cities.length);
+        city = cities[randomCity];
+        console.log(city);
+        
+    
+        geocoder.geocode({address:city},function(results){
+            map.setCenter(results[0].geometry.location);
+            map.setZoom(10);
+            search();
+
+        })
+    
 
 
         $.ajax({
