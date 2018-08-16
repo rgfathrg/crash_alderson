@@ -1,16 +1,19 @@
 $(document).ready(function () {
-    
+
+    //Array to receive associative array to make sure only unique events populate
     var uniCity = [];
+    //Array to choose random city
     var cities = ["charlotte", "houston", "san+diego", "new+york", "san+francisco", "orlando", "charleston", "boston", "miami", "tampa", "chicago", "buffalo", "baltimore", "columbus", "london", "moscow", "dublin", "rome", "cleveland"];
 
     var queryURL = "https://app.ticketmaster.com/discovery/v2/events.json?apikey=Fst7jzMSw05CNr3UdA1wrZAywnNi0A3j";
-    
+
     var city;
     var limit = 20;
     var startDate = "2018-09-01T01:00:00Z";
     var endDate = "2019-01-31T21:59:00Z";
     var limitation = 0;
 
+    //click event listener
     $("#go").on("click", function () {
 
         event.preventDefault();
@@ -38,7 +41,7 @@ $(document).ready(function () {
         //     });
         // });
 
-
+        //ticketmaster API call
         $.ajax({
             url: queryURL,
             method: "GET",
@@ -50,34 +53,17 @@ $(document).ready(function () {
             }
         }).then(function (response) {
             $("#events").empty();
-            // console.log(response)
             console.log(response._embedded.events);
-            // console.log(response._embedded.events[0].images);
             var events = response._embedded.events;
 
             for (var i = 0; i < events.length; i++) {
 
                 var eventTitle = events[i].name;
-
                 var id = events[i].id;
-
-                // console.log(events);
- 
                 uniCity[eventTitle] = id;
-
-
-
-                //console.log(response._embedded.events.dates.localDate);
             }
 
             console.log(uniCity);
-
-
-
-            // for (var key in uniCity) {
-            //     var getId = uniCity[key];
-            //     console.log(uniCity[key]);
-
 
             $.ajax({
                 url: queryURL,
@@ -88,8 +74,7 @@ $(document).ready(function () {
                     endDateTime: endDate,
                     size: limit
                 }
-                // async:true,
-                // dataType: "json",
+
             }).then(function (response) {
                 console.log(response);
                 for (var key in uniCity) {
@@ -103,7 +88,7 @@ $(document).ready(function () {
                             var eventPics = response._embedded.events[i].images[0].url;
                             var eventTitle = response._embedded.events[i].name;
                             var p = $("<p>");
-                            
+
                             p.html(eventTitle + "<br>" + eventDates + "<br>" + eventTime);
                             var img = $("<img>").attr("class", "card-img-top");
                             img.attr("src", eventPics);
@@ -116,12 +101,8 @@ $(document).ready(function () {
                     }
                 }
             });
-
-
         });
-
     });
-
 });
 
 
