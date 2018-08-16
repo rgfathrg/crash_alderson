@@ -1,4 +1,3 @@
-
 var map, places, infoWindow;
 var markers = [];
 var autocomplete;
@@ -81,10 +80,10 @@ function initMap() {
     });
   places = new google.maps.places.PlacesService(map);
   autocomplete.addListener('place_changed', onPlaceChanged);
-  
+
   // Add a DOM event listener to react when the user selects a country.
-  document.getElementById('country').addEventListener(
-    'change', setAutocompleteCountry);
+  // document.getElementById('country').addEventListener(
+  //   'change', setAutocompleteCountry);
 }
 
 
@@ -112,7 +111,7 @@ function search() {
   places.nearbySearch(search, function (results, status) {
     if (status === google.maps.places.PlacesServiceStatus.OK) {
       clearResults();
-      clearMarkers();
+      // clearMarkers();
       // Create a marker for each hotel found, and
       // assign a letter of the alphabetic to each marker icon.
       for (var i = 0; i < results.length; i++) {
