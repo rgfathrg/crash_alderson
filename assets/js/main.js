@@ -1,19 +1,42 @@
 $(document).ready(function () {
-    var cities = ["charlotte", "houston", "san+diego", "new+york", "san+francisco", "orlando", "charleston", "boston", "miami", "tampa"];
+    
     var uniCity = [];
+    var cities = ["charlotte", "houston", "san+diego", "new+york", "san+francisco", "orlando", "charleston", "boston", "miami", "tampa", "chicago", "buffalo", "baltimore", "columbus", "london", "moscow", "dublin", "rome", "cleveland"];
+
     var queryURL = "https://app.ticketmaster.com/discovery/v2/events.json?apikey=Fst7jzMSw05CNr3UdA1wrZAywnNi0A3j";
+    
     var city;
     var limit = 20;
     var startDate = "2018-09-01T01:00:00Z";
     var endDate = "2019-01-31T21:59:00Z";
     var limitation = 0;
 
-
-
     $("#go").on("click", function () {
+
+        event.preventDefault();
+
+        var geocoder = new google.maps.Geocoder();
+
         var randomCity = Math.floor(Math.random() * cities.length);
-        city = cities[randomCity];
+        city = cities[randomCity].toUpperCase();
         console.log(city);
+
+        var cityhead = $("<div>").html("<p>Your city: " + city + "!</p>");
+        cityhead.addClass("card my-3 bg-dark text-light heading banner");
+        $("#cityName").html(cityhead);
+
+        geocoder.geocode({ address: city }, function (results) {
+            map.setCenter(results[0].geometry.location);
+            map.setZoom(15);
+            search();
+        });
+
+        // $(function() {
+        //     $.scrollify({
+        //         section: "section",
+        //         interstitialSection: "footer"
+        //     });
+        // });
 
 
         $.ajax({
@@ -25,8 +48,6 @@ $(document).ready(function () {
                 endDateTime: endDate,
                 size: limit
             }
-            // async:true,
-            // dataType: "json",
         }).then(function (response) {
             $("#events").empty();
             // console.log(response)
