@@ -23,7 +23,7 @@ $(document).ready(function () {
         city = cities[randomCity].toUpperCase();
 
         // Adds the randomely selected city to the City Banner after user clicks GO!
-        var banner = $("<div>").html("<p>" + city + "!</p>");
+        var banner = $("<div>").html("<p>Your city: " + city + "!</p>");
         banner.addClass("card bg-light text-dark banner-glow-dark").attr("id", "bannerMargin");
         $("#cityBanner").html(banner);
 
@@ -89,18 +89,19 @@ $(document).ready(function () {
     });
 });
 
-// Smooth Scroll
-$(function() {
-    $('#goBtn').click(function() {
-      if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
-        var target = $(this.hash);
-        target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
-        if (target.length) {
-          $('html,body').animate({
-            scrollTop: target.offset().top
-          }, 800);
-          return false;
+$(function () {
+    // This will select everything with the class smoothScroll
+    // This should prevent problems with carousel, scrollspy, etc...
+    $('#goBtn').click(function () {
+        if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
+            var target = $(this.hash);
+            target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+            if (target.length) {
+                $('html,body').animate({
+                    scrollTop: target.offset().top
+                }, 1000); // The number here represents the speed of the scroll in milliseconds
+                return false;
+            }
         }
-      }
     });
-  });
+});
