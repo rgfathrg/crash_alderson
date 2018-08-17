@@ -5,6 +5,19 @@ $(document).ready(function () {
         document.location.reload(true);
     });
 
+    //Array to receive associative array to make sure only unique events populate
+    var uniCity = [];
+    //Array to choose random city
+    var cities = ["charlotte", "houston", "san+diego", "new+york", "san+francisco", "orlando", "charleston", "boston", "miami", "tampa", "chicago", "buffalo", "baltimore", "columbus", "cleveland"];
+
+    var queryURL = "https://app.ticketmaster.com/discovery/v2/events.json?apikey=Fst7jzMSw05CNr3UdA1wrZAywnNi0A3j";
+
+    var city;
+    var limit = 20;
+    var startDate = "2018-09-01T01:00:00Z";
+    var endDate = "2019-01-31T21:59:00Z";
+    var limitation = 0;
+
     // GO Button
     $("#goBtn").on("click", function () {
 
@@ -36,6 +49,14 @@ $(document).ready(function () {
         });
 
         // AJAX call to the ticketmaster API for our events
+        // $(function() {
+        //     $.scrollify({
+        //         section: "section",
+        //         interstitialSection: "footer"
+        //     });
+        // });
+
+        //ticketmaster API call
         $.ajax({
             url: queryURL,
             method: "GET",
@@ -43,10 +64,12 @@ $(document).ready(function () {
                 city: city,
                 startDateTime: startDate,
                 endDateTime: endDate,
+                size: limit
             }
         }).then(function (response) {
 
             $("#events").empty();
+
             // console.log(response)
             // console.log(response._embedded.events);
             // console.log(response._embedded.events[0].images);
@@ -58,14 +81,14 @@ $(document).ready(function () {
             tr.addClass("cardRow");
             $("#events").append(tr);
 
+            console.log(response._embedded.events);
+            var events = response._embedded.events;
+
             // Loops through the events and adds them to the event rows
             for (var i = 0; i < events.length; i++) {
-                var card = $("<div>").addClass("card float-left border cards col-2");
-                var cardBody = $("<div>").attr("class", "card-body");
-                var eventDates = events[i].dates.start.localDate;
-                var eventTime = events[i].dates.start.localTime;
-                var eventPics = events[i].images[0].url;
+
                 var eventTitle = events[i].name;
+              
                 var p = $("<p>");
                 p.html(eventTitle + "<br>" + eventDates + "<br>" + eventTime);
                 var img = $("<img>").attr("class", "card-img-top");
@@ -84,6 +107,49 @@ $(document).ready(function () {
                     $("#events").append(tr);
                 };
             };
+
+                var id = events[i].id;
+                uniCity[eventTitle] = id;
+            }
+
+            console.log(uniCity);
+
+            $.ajax({
+                url: queryURL,
+                method: "GET",
+                data: {
+                    city: city,
+                    startDateTime: startDate,
+                    endDateTime: endDate,
+                    size: limit
+                }
+
+            }).then(function (response) {
+                console.log(response);
+                for (var key in uniCity) {
+                    uniqueId = uniCity[key];
+                    for (i = 0; i < limit; i++) {
+                        if (response._embedded.events[i].id === uniqueId) {
+                            var card = $("<div>").attr("style", "width: 18rem;").addClass("border float-left");
+                            var cardBody = $("<div>").attr("class", "card-body");
+                            var eventDates = response._embedded.events[i].dates.start.localDate;
+                            var eventTime = response._embedded.events[i].dates.start.localTime;
+                            var eventPics = response._embedded.events[i].images[0].url;
+                            var eventTitle = response._embedded.events[i].name;
+                            var p = $("<p>");
+
+                            p.html(eventTitle + "<br>" + eventDates + "<br>" + eventTime);
+                            var img = $("<img>").attr("class", "card-img-top");
+                            img.attr("src", eventPics);
+                            cardBody.append(p);
+                            card.append(img);
+                            card.append(cardBody);
+
+                            $("#events").append(card);
+                        }
+                    }
+                }
+            });
 
         });
     });
