@@ -58,6 +58,9 @@ $(document).ready(function () {
             tr.addClass("cardRow");
             $("#events").append(tr);
 
+            console.log(response._embedded.events);
+            var events = response._embedded.events;
+
             // Loops through the events and adds them to the event rows
             for (var i = 0; i < events.length; i++) {
                 var card = $("<div>").addClass("card float-left border cards col-2");
@@ -90,8 +93,6 @@ $(document).ready(function () {
 });
 
 $(function () {
-    // This will select everything with the class smoothScroll
-    // This should prevent problems with carousel, scrollspy, etc...
     $('#goBtn').click(function () {
         if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
             var target = $(this.hash);
@@ -99,7 +100,7 @@ $(function () {
             if (target.length) {
                 $('html,body').animate({
                     scrollTop: target.offset().top
-                }, 1000); // The number here represents the speed of the scroll in milliseconds
+                }, 800);
                 return false;
             }
         }
