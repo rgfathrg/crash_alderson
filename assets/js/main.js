@@ -8,9 +8,9 @@ $(document).ready(function () {
     var queryURL = "https://app.ticketmaster.com/discovery/v2/events.json?apikey=Fst7jzMSw05CNr3UdA1wrZAywnNi0A3j";
 
     var city;
-    var limit = 20;
+    var limit = 25;
     var startDate = "2018-09-01T01:00:00Z";
-    var endDate = "2019-01-31T21:59:00Z";
+    var endDate = "2019-03-31T21:59:00Z";
     var limitation = 0;
 
     //click event listener
@@ -49,7 +49,8 @@ $(document).ready(function () {
                 city: city,
                 startDateTime: startDate,
                 endDateTime: endDate,
-                size: limit
+                size: limit,
+                locale: "en"
             }
         }).then(function (response) {
             $("#events").empty();
@@ -72,7 +73,8 @@ $(document).ready(function () {
                     city: city,
                     startDateTime: startDate,
                     endDateTime: endDate,
-                    size: limit
+                    size: limit,
+                    locale: "en"
                 }
 
             }).then(function (response) {
