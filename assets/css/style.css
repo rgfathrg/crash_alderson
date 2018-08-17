@@ -1,98 +1,124 @@
 /* Global */
 body {
     font-family: 'Maven Pro', sans-serif;
-    overflow-x: 0;
+    overflow-x: hidden;
 }
 
-/* Jumbotron */
-#jumbo-row {
-  background: url('http://media.cmgdigital.com/shared/img/photos/2015/11/18/8b/9d/concert-crowd-crop.jpg') no-repeat;
-  background-size: cover;
-  height: 100vh;
-    /* margin-top: 8% !important; */
-    margin: 0 !important;
+/* Navbar */
+#navbar {
+  position: fixed;
+  z-index: 1000;
+  width: 100%;
+  left: 0;
+  top: 0;
+  opacity: .75;
 }
 
-.jumbotron {
-    margin-top: 12% !important;
-    opacity: .95;
-    box-shadow: 0px 0px 5px 2px black;
-    width: 50%; 
-    text-align: center;
+#brand {
+  background: red;
+  padding: 3px;
+  border-radius: 3px;
+}
+
+#navBtn {
+  background: black;
+}
+
+/* Carousel Wrapper*/
+#landingWrapper {
+  position: relative;
+}
+
+#goCard {
+  position: absolute;
+  top: 0;
+  z-index: 999;
+  margin-top: 26% !important;
+  opacity: .8;
+  box-shadow: 0px 0px 5px 2px white;
+  border: none;
+}
+
+#goBtn {
+  margin-top: 20px;
+  padding: 10px 50px 10px 50px;
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
 }
 
 #go:hover {
-    box-shadow: 0px 0px 5px 2px white;
-    cursor: pointer;
+  box-shadow: 0px 0px 5px 2px white;
+  cursor: pointer;
 }
 
-table {
-    font-size: 12px;
+#carouselInner {
+  max-height : 100vh;
+  max-width : 100%;
+  box-shadow: 0px 0px 5px 3px black;
+  position: relative;
+  top: 0;
+}
+
+/* Main Map/Hotel Wrapper */
+#hotelWrapper {
+  position: relative;
+  height: 100vh;
+  background: url("../img/funky-lines.png");
+}
+
+#cityBanner {
+  /* position: relative; */
+  margin-top: 80px;
+  margin-bottom: 40px;
+}
+
+/* Banners */
+#bannerRow {
+  position: relative;
+}
+
+.banner {
+  font-size: 40px;
+  font-weight: bold;
+}
+
+.banner-glow-light {
+  box-shadow: 0px 0px 5px 2px white;
+  border: none;
+  padding: 0;
+}
+
+.banner-glow-dark {
+  box-shadow: 0px 0px 5px 2px black;
+  border: none;
+  padding: 0;
+}
+
+/* #bannerMargin {
+  margin-bottom: 0 !important;
+} */
+
+#hotelBanner {
+  margin-top: 40px;
+  margin-bottom: 40px;
 }
 
 /* Map Styling */
-#mapSection {
-  background: url("../img/funky-lines.png");
-  height: 100vh;
+#mapRow {
+  position: static !important;
+  top: 1000px;
+}
+
+#mapCard {
+  overflow: hidden;
+  justify-content: center;
+  height: 450px;
 }
 
 #map {
   position: static !important;
 }
-
-#mapCard {
-  overflow: hidden;
-}
-
-.heading,
-#chooseHotel {
-  font-size: 40px;
-  font-weight: bold;
-  padding: 10px;
-}
-
-.cards {
-  margin: 10px;
-  box-shadow: 0px 0px 4px 2px;
-  border-radius: 5px;
-  border: none;
-  padding: 20px;
-  text-align: center;
-  font-size: 20px;
-  font-weight: bold;
-}
-
-.cardRow {
-  justify-content: center;
-  background: url("../img/ep_naturalblack.png");
-}
-
-#cardSection {
-  box-sizing: border-box;
-  overflow: hidden;
-}
-
-/* Event Styling */
-#eventSection {
-  background: url("../img/ep_naturalblack.png");
-  height: 100vh;
-  overflow-y: 0;
-}
-
-.banner {
-  box-shadow: 0px 0px 5px 2px black;
-}
-
-
-
-
-
-
-
-
-
-
-
 
 /* Random Google Styling */
 #listing {
@@ -117,7 +143,7 @@ table {
 }
 
 #locationField {
-  /* position: absolute; */
+  position: absolute;
   width: 190px;
   height: 25px;
   left: 108px;
@@ -175,4 +201,55 @@ table {
 
 .iw_table_icon {
   text-align: right;
+}
+
+/* Event Wrapper */
+#eventsWrapper {
+  position: relative;
+  background: url("../img/ep_naturalblack.png");
+}
+
+#eventBanner {
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+.cards {
+  margin: 10px;
+  box-shadow: 0px 0px 4px 2px white;
+  border-radius: 5px;
+  border: none;
+  padding: 20px;
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.cardRow {
+  justify-content: center;
+}
+
+#cardSection {
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+/* Event Styling */
+#eventSection {
+  background: url("../img/funky-lines.png");
+  height: 100vh;
+  overflow-y: 0;
+}
+
+/* Footer */
+.footer {
+  background: url("../img/ep_naturalblack.png");
+  height: 100px;
+  position: relative;
+}
+
+#footerSpan {
+  font-weight: bold;
+  font-size: 25px;
+  color: white;
 }
