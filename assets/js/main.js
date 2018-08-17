@@ -1,9 +1,14 @@
 $(document).ready(function () {
 
+    // Refresh Page
+    $("#brand").click(function () {
+        document.location.reload(true);
+    });
+
     //Array to receive associative array to make sure only unique events populate
     var uniCity = [];
     //Array to choose random city
-    var cities = ["charlotte", "houston", "san+diego", "new+york", "san+francisco", "orlando", "charleston", "boston", "miami", "tampa", "chicago", "buffalo", "baltimore", "columbus", "london", "moscow", "dublin", "rome", "cleveland"];
+    var cities = ["charlotte", "houston", "san+diego", "new+york", "san+francisco", "orlando", "charleston", "boston", "miami", "tampa", "chicago", "buffalo", "baltimore", "columbus", "cleveland"];
 
     var queryURL = "https://app.ticketmaster.com/discovery/v2/events.json?apikey=Fst7jzMSw05CNr3UdA1wrZAywnNi0A3j";
 
@@ -13,11 +18,14 @@ $(document).ready(function () {
     var endDate = "2019-01-31T21:59:00Z";
     var limitation = 0;
 
-    //click event listener
-    $("#go").on("click", function () {
+    // GO Button
+    $("#goBtn").on("click", function () {
 
-        event.preventDefault();
-
+        // Variables
+        var cities = ["charlotte", "houston", "san+diego", "new+york", "san+francisco", "orlando", "charleston", "boston", "miami", "tampa", "chicago", "buffalo", "baltimore", "columbus", "cleveland"];
+        var queryURL = "https://app.ticketmaster.com/discovery/v2/events.json?apikey=Fst7jzMSw05CNr3UdA1wrZAywnNi0A3j";
+        var startDate = "2018-09-01T01:00:00Z";
+        var endDate = "2018-10-30T21:59:00Z";
         var geocoder = new google.maps.Geocoder();
 
     $("#go").on("click", function () {
@@ -25,6 +33,11 @@ $(document).ready(function () {
         event.preventDefault();
       
         var randomCity = Math.floor(Math.random() * cities.length);
+
+        event.preventDefault();
+
+        // Converts cities appended to screen to Uppercase
+        var city;
         city = cities[randomCity].toUpperCase();
         console.log(city);
       
@@ -44,16 +57,20 @@ $(document).ready(function () {
         })
     
 
-        var cityhead = $("<div>").html("<p>Your city: " + city + "!</p>");
-        cityhead.addClass("card my-3 bg-dark text-light heading banner");
-        $("#cityName").html(cityhead);
+        // Adds the randomely selected city to the City Banner after user clicks GO!
+        var banner = $("<div>").html("<p>" + city + "!</p>");
+        banner.addClass("card bg-light text-dark banner-glow-dark").attr("id", "bannerMargin");
+        $("#cityBanner").html(banner);
 
+        // Centers/zooms the map on the randomly selected city
         geocoder.geocode({ address: city }, function (results) {
             map.setCenter(results[0].geometry.location);
             map.setZoom(15);
+            // then places the markers on the map
             search();
         });
 
+        // AJAX call to the ticketmaster API for our events
         // $(function() {
         //     $.scrollify({
         //         section: "section",
@@ -74,9 +91,22 @@ $(document).ready(function () {
         }).then(function (response) {
             console.log('hello');
             $("#events").empty();
+
+            // console.log(response)
+            // console.log(response._embedded.events);
+            // console.log(response._embedded.events[0].images);
+
+            var events = response._embedded.events;
+
+            // Adds initial event row
+            var tr = $("<div>").addClass("row");
+            tr.addClass("cardRow");
+            $("#events").append(tr);
+
             console.log(response._embedded.events);
             var events = response._embedded.events;
 
+            // Loops through the events and adds them to the event rows
             for (var i = 0; i < events.length; i++) {
 
                 var eventTitle = events[i].name;
@@ -134,6 +164,7 @@ $(document).ready(function () {
                     }
                 }
             });
+
         });
     });
 });
