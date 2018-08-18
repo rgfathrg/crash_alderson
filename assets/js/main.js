@@ -6,20 +6,7 @@ $(document).ready(function () {
     });
 
     var uniCity = [];
-<<<<<<< HEAD
-    //Array to choose random city
-    var cities = ["charlotte", "houston", "san+diego", "new+york", "san+francisco", "orlando", "charleston", "boston", "miami", "tampa", "chicago", "buffalo", "baltimore", "columbus", "cleveland"];
-
-    var queryURL = "https://app.ticketmaster.com/discovery/v2/events.json?apikey=Fst7jzMSw05CNr3UdA1wrZAywnNi0A3j";
-
-    var city;
     var limit = 25;
-    var startDate = "2018-09-01T01:00:00Z";
-    var endDate = "2019-03-31T21:59:00Z";
-    var limitation = 0;
-=======
-    var limit = 25;
->>>>>>> 119df4b8cb188117329b07a04d4cfc56c692289f
 
     // GO Button
     $("#goBtn").on("click", function () {
@@ -99,24 +86,11 @@ $(document).ready(function () {
             $("#events").append(tr);
 
 
-<<<<<<< HEAD
-            $.ajax({
-                url: queryURL,
-                method: "GET",
-                data: {
-                    city: city,
-                    startDateTime: startDate,
-                    endDateTime: endDate,
-                    size: limit,
-                    locale: "en"
-                }
-=======
             for (var key in uniCity) {
                 uniqueId = uniCity[key];
 
                 for (i = 0; i < limit; i++) {
                     if (response._embedded.events[i].id === uniqueId) {
->>>>>>> 119df4b8cb188117329b07a04d4cfc56c692289f
 
                         var card = $("<div>").addClass("card cards col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-3");
                         var cardBody = $("<div>").attr("class", "card-body");
