@@ -30,7 +30,7 @@
     <!-- Google Maps API -->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAXv1-mQ0mvMyr3qgiToPgTKcTNJVXMysk&libraries=places&callback=initMap"
         async defer></script>
-  
+
 </head>
 
 <body>
@@ -65,7 +65,7 @@
                 <div class="card-body">
                     <h1 class="display-4">Welcome to Travel-O-Lette.</h1>
                     <h5 style="font-style: italic; font-weight: bold;">Travel-O-Lette is a simple random destination generator. Can't decide where to go on your next adventure?
-                        Let us help. Awesomeness Awaits!</h3>
+                        Let us help. Awesomeness Awaits!&trade;</h3>
                         <a class="btn btn-primary mx-auto" href="#hotelWrapper" role="button" id="goBtn">Let's Go!</a>
                 </div>
             </div>
@@ -74,6 +74,7 @@
         <!-- Landing Page Carousel -->
         <div class="row" id="caroRow">
 
+            <!-- Carousel Images/Controls -->
             <div class="col-sm-12 carousel slide" data-ride="carousel" id="carousel">
                 <div class="carousel-inner" id="carouselInner">
                     <div class="carousel-item active">
@@ -124,15 +125,6 @@
                             </div>
                         </div>
 
-                        <!-- Map Inputs -->
-                        <!-- <div class="row">
-                            <div class="col-sm-2">
-                                <div id="locationField">
-                                    <input id="autocomplete" placeholder="Enter a city" type="text" />
-                                </div>
-                            </div>
-                        </div> -->
-
                         <!-- Hotel Panel Information (When clicked in map) -->
                         <div style="display: none">
                             <div id="info-content">
@@ -161,6 +153,7 @@
                             </div>
                         </div>
                     </div>
+
                     <!-- Choose a Hotel Banner -->
                     <div class="row">
                         <div class="col-sm-12 text-center banner">
@@ -174,7 +167,9 @@
         </div>
     </div>
 
+    <!-- Events Wrapper -->
     <div class="wrapper" id="eventsWrapper">
+        
         <!-- Events Banner -->
         <div class="container">
             <div class="row">
