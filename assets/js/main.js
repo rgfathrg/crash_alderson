@@ -8,15 +8,15 @@ $(document).ready(function () {
     //Array to receive associative array to make sure only unique events populate
     var uniCity = [];
     //Array to choose random city
-    var cities = ["charlotte", "houston", "san+diego", "new+york", "san+francisco", "orlando", "charleston", "boston", "miami", "tampa", "chicago", "buffalo", "baltimore", "columbus", "cleveland"];
+    // var cities = ["charlotte", "houston", "san+diego", "new+york", "san+francisco", "orlando", "charleston", "boston", "miami", "tampa", "chicago", "buffalo", "baltimore", "columbus", "cleveland"];
 
-    var queryURL = "https://app.ticketmaster.com/discovery/v2/events.json?apikey=Fst7jzMSw05CNr3UdA1wrZAywnNi0A3j";
+    // var queryURL = "https://app.ticketmaster.com/discovery/v2/events.json?apikey=Fst7jzMSw05CNr3UdA1wrZAywnNi0A3j";
 
-    var city;
-    var limit = 20;
-    var startDate = "2018-09-01T01:00:00Z";
-    var endDate = "2019-01-31T21:59:00Z";
-    var limitation = 0;
+    // var city;
+    var limit = 25;
+    // var startDate = "2018-09-01T01:00:00Z";
+    // var endDate = "2019-03-31T21:59:00Z";
+    // var limitation = 0;
 
     // GO Button
     $("#goBtn").on("click", function () {
@@ -64,7 +64,8 @@ $(document).ready(function () {
                 city: city,
                 startDateTime: startDate,
                 endDateTime: endDate,
-                size: limit
+                size: limit,
+                locale: "en"
             }
         }).then(function (response) {
 
@@ -88,15 +89,17 @@ $(document).ready(function () {
             for (var i = 0; i < events.length; i++) {
 
                 var eventTitle = events[i].name;
+                var id = events[i].id;
+                uniCity[eventTitle] = id;
               
-                var p = $("<p>");
-                p.html(eventTitle + "<br>" + eventDates + "<br>" + eventTime);
-                var img = $("<img>").attr("class", "card-img-top");
-                img.attr("src", eventPics);
-                cardBody.append(p);
-                card.append(img);
-                card.append(cardBody);
-                tr.append(card);
+                // var p = $("<p>");
+                // p.html(eventTitle + "<br>" + eventDates + "<br>" + eventTime);
+                // var img = $("<img>").attr("class", "card-img-top");
+                // img.attr("src", eventPics);
+                // cardBody.append(p);
+                // card.append(img);
+                // card.append(cardBody);
+                // tr.append(card);
 
                 // Conditional for dynamically creating rows
                 // If a 5th card tries to enter an event row
@@ -108,11 +111,10 @@ $(document).ready(function () {
                 };
             };
 
-                var id = events[i].id;
-                uniCity[eventTitle] = id;
-            }
+                
+            });
 
-            console.log(uniCity);
+            //console.log(uniCity);
 
             $.ajax({
                 url: queryURL,
@@ -121,7 +123,8 @@ $(document).ready(function () {
                     city: city,
                     startDateTime: startDate,
                     endDateTime: endDate,
-                    size: limit
+                    size: limit,
+                    locale: "en"
                 }
 
             }).then(function (response) {
@@ -131,6 +134,13 @@ $(document).ready(function () {
                     for (i = 0; i < limit; i++) {
                         if (response._embedded.events[i].id === uniqueId) {
                             var card = $("<div>").attr("style", "width: 18rem;").addClass("border float-left");
+                            // added card id
+                            card.addClass("product-list-item");
+                            card.draggable({
+                                revert: true, // this means the element won’t remain wherever you drag it
+                                revertDuration: 150,
+                                stack: ".card-img-top > div"
+                            });
                             var cardBody = $("<div>").attr("class", "card-body");
                             var eventDates = response._embedded.events[i].dates.start.localDate;
                             var eventTime = response._embedded.events[i].dates.start.localTime;
@@ -149,11 +159,14 @@ $(document).ready(function () {
                         }
                     }
                 }
+            
             });
-
-        });
+        
     });
-});
+
+    
+
+
 
 // Smooth Scroll
 $(function() {
@@ -170,3 +183,30 @@ $(function() {
       }
     });
   });
+
+});
+
+$( ".product-list-item" ).draggable({
+    revert: true, // this means the element won’t remain wherever you drag it
+    revertDuration: 150,
+    stack: ".card-img-top > div"
+});
+$(".idea-board").droppable({
+    accept: '.product-list-item',
+});
+// $(".idea-board").droppable({
+//     over: function (e) {
+//         e.preventDefault();
+//         $(this).addClass("active"); // expands the tray
+//         $(".wishlistItems").prepend('<div class="item hovering"></div>'); // adds a new, highlighted space at the 
+//                                          // beginning of the list of items
+//     }
+// });
+// $(".idea-board").droppable({
+//     drop: function( event, ui ) {
+//         $( this )
+//           .addClass( "ui-state-highlight" )
+//           .find( "p" )
+//             .html( "Dropped!" );
+//       }
+// });
