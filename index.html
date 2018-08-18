@@ -2,12 +2,10 @@
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Travel-O-Lette</title>
-
     <!-- Bootstrap CDN -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
         crossorigin="anonymous">
@@ -30,11 +28,13 @@
     <!-- Google Maps API -->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAXv1-mQ0mvMyr3qgiToPgTKcTNJVXMysk&libraries=places&callback=initMap"
         async defer></script>
-  
+
+<!-- jquery UI -->
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
 </head>
 
 <body>
-
     <!-- Navbar -->
     <nav class="navbar bg-dark navbar-dark" id="navbar">
         <!-- Brand -->
@@ -55,32 +55,28 @@
             </ul>
         </div>
     </nav>
-
     <!-- Landing Page Wrapper -->
     <div class="wrapper" id="landingWrapper">
-
         <!-- Welcome card -->
         <div class="col-sm-7 mx-auto">
             <div class="card bg-light text-dark text-center" id="goCard">
                 <div class="card-body">
                     <h1 class="display-4">Welcome to Travel-O-Lette.</h1>
                     <h5 style="font-style: italic; font-weight: bold;">Travel-O-Lette is a simple random destination generator. Can't decide where to go on your next adventure?
-                        Let us help. Awesomeness Awaits!</h3>
+                        Let us help. Awesomeness Awaits!&trade;</h3>
                         <a class="btn btn-primary mx-auto" href="#hotelWrapper" role="button" id="goBtn">Let's Go!</a>
                 </div>
             </div>
         </div>
-
         <!-- Landing Page Carousel -->
         <div class="row" id="caroRow">
-
             <div class="col-sm-12 carousel slide" data-ride="carousel" id="carousel">
                 <div class="carousel-inner" id="carouselInner">
                     <div class="carousel-item active">
                         <img class="d-block w-100 imgs" src="/assets/img/sky.jpg" alt="Balloons">
                     </div>
                     <div class="carousel-item">
-                        <img class="d-block w-100 imgs" src="/assets/img/colorrun.jpg" alt="Color Run">
+                        <img class="d-block w-100 imgs" src="./assets/img/colorrun.jpg" alt="Color Run">
                     </div>
                     <div class="carousel-item">
                         <img class="d-block w-100 imgs" src="/assets/img/yellow.jpg" alt="Concert">
@@ -97,23 +93,18 @@
             </div>
         </div>
     </div>
-
     <!-- Hotel Wrapper -->
     <div class="wrapper" id="hotelWrapper">
-
         <!-- Hotel Wrapper Container -->
         <div class="container">
-
             <!-- City Name Banner -->
             <div class="row">
                 <div class="col-sm-12 text-center banner" id="cityBanner"></div>
             </div>
-
             <!-- Map -->
             <div class="row" id="mapRow">
                 <div class="container">
                     <div class="card col-12" id="mapCard">
-
                         <!-- Map Div -->
                         <div class="row" id="mapRow">
                             <div id="map"></div>
@@ -123,16 +114,6 @@
                                 </table>
                             </div>
                         </div>
-
-                        <!-- Map Inputs -->
-                        <!-- <div class="row">
-                            <div class="col-sm-2">
-                                <div id="locationField">
-                                    <input id="autocomplete" placeholder="Enter a city" type="text" />
-                                </div>
-                            </div>
-                        </div> -->
-
                         <!-- Hotel Panel Information (When clicked in map) -->
                         <div style="display: none">
                             <div id="info-content">
@@ -173,7 +154,6 @@
             </div>
         </div>
     </div>
-
     <div class="wrapper" id="eventsWrapper">
         <!-- Events Banner -->
         <div class="container">
@@ -185,13 +165,11 @@
                 </div>
             </div>
         </div>
-
         <!-- Events Section -->
         <div id="cardSection">
             <div id="events"></div>
         </div>
     </div>
-
     <!-- Footer -->
     <footer class="footer">
         <div class="col-sm-12 text-center">
@@ -199,6 +177,29 @@
         </div>
     </footer>
 
+    <div class="idea-board ui-droppable">
+        <a href="#" class="close">
+            <span class="fa fa-close"></span>
+        </a>
+        <a href="#" class="delete ui-droppable">
+            <span class="fa fa-trash-o"></span>
+        </a>
+        <div class="fa fa-bulb"></div>
+        <h3>Idea Board</h3>
+        <p>Drag and drop products here to get started on creating your perfect gym!</p>
+        <a href="#" class="open">View Board
+            <span class="fa fa-angle-right"></span>
+        </a>
+        <div class="wishlistItems">
+            <div class="clear"></div>
+        </div>
+        <a href="/customer/login" class="login">Login to My Idea Board</a>
+        <div class="iloader">
+            <div class="spinner"></div>
+        </div>
+    </div>
+
 </body>
 
 </html>
+
