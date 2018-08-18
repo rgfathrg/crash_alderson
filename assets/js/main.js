@@ -99,6 +99,7 @@ $(document).ready(function () {
                         var eventPics = response._embedded.events[i].images[0].url;
                         var eventTitle = response._embedded.events[i].name;
 
+
                         var p = $("<p>");
                         p.html(eventTitle + "<br>" + eventDates + "<br>" + eventTime);
 
@@ -132,5 +133,6 @@ $(document).ready(function () {
             }
         });
     });
+
 
 });
