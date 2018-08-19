@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sign-In</title>
     <title>Travel-O-Lette</title>
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/scrollify/1.0.19/jquery.scrollify.min.js"></script> -->
 
@@ -36,9 +37,6 @@
         async defer></script>
 </head>
 
-<title>Document</title>
-</head>
-
 <body>
     <!-- Navbar -->
     <nav class="navbar bg-dark navbar-dark" id="navbar">
@@ -66,9 +64,36 @@
             </ul>
         </div>
     </nav>
-    <div id="favorites" class="container">
 
+    <!--Sign-In Form-->
+    <div class="jumbotron" id="fojumbo">
+        <div class="container">
+            <div class="row">
+                <form class="border" id="form">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Email address</label>
+                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Password</label>
+                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                    </div>
+                    <div class="form-group form-check">
+                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                        <label class="form-check-label" for="exampleCheck1">Let's Roll!</label>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Login</button>
+                </form>
+            </div>
+        </div>
     </div>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="col-sm-12 text-center">
+            <span class="align-middle" id="footerSpan">Travel-O-Lette &copy; 2018</span>
+        </div>
+    </footer>
 </body>
 
 </html>
