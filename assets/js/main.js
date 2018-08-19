@@ -12,10 +12,10 @@ $(document).ready(function () {
     $("#goBtn").on("click", function () {
 
         // Variables
-        var cities = ["charlotte", "houston", "san+diego", "new+york", "san+francisco", "orlando", "charleston", "boston", "miami", "tampa", "chicago", "buffalo", "baltimore", "columbus", "cleveland", "dublin"];
+        var cities = ["charlotte", "houston", "san" + " " + "diego", "new" + " " + "york", "san" + " " + "francisco", "orlando", "charleston", "boston", "miami", "tampa", "chicago", "buffalo", "baltimore", "columbus", "cleveland", "dublin", "london"];
         var queryURL = "https://app.ticketmaster.com/discovery/v2/events.json?apikey=Fst7jzMSw05CNr3UdA1wrZAywnNi0A3j";
         var startDate = "2018-09-01T01:00:00Z";
-        var endDate = "2018-10-30T21:59:00Z";
+        var endDate = "2019-07-31T21:59:00Z";
         var geocoder = new google.maps.Geocoder();
         var randomCity = Math.floor(Math.random() * cities.length);
 
@@ -56,6 +56,9 @@ $(document).ready(function () {
 
             console.log(response._embedded.events);
             var events = response._embedded.events;
+            var tr = $("<div>").addClass("row");
+            tr.addClass("cardRow");
+            $("#events").append(tr);
 
             // Loops through the events and adds them to the event rows
             for (var i = 0; i < events.length; i++) {
@@ -63,29 +66,9 @@ $(document).ready(function () {
                 var eventTitle = events[i].name;
                 var id = events[i].id;
                 uniCity[eventTitle] = id;
-                
+
             };
-        });
-
-        $.ajax({
-            url: queryURL,
-            method: "GET",
-            data: {
-                city: city,
-                startDateTime: startDate,
-                endDateTime: endDate,
-                size: limit,
-                locale: "en"
-            }
-        }).then(function (response) {
-            console.log(response);
-
-            // Adds initial event row
-            var tr = $("<div>").addClass("row");
-            tr.addClass("cardRow");
-            $("#events").append(tr);
-
-
+            //loops through associative array to limit duplicated events
             for (var key in uniCity) {
                 uniqueId = uniCity[key];
 
@@ -98,10 +81,17 @@ $(document).ready(function () {
                         var eventTime = response._embedded.events[i].dates.start.localTime;
                         var eventPics = response._embedded.events[i].images[0].url;
                         var eventTitle = response._embedded.events[i].name;
+                        var ticketLink = response._embedded.events[i].url;
+                        var link = $("<a/>", {
+                            html: "<br>" + "Ticketmaster Link",
+                            href: ticketLink
+                        });
+                        
+                        
 
                         var p = $("<p>");
                         p.html(eventTitle + "<br>" + eventDates + "<br>" + eventTime);
-
+                        p.append(link);
                         var img = $("<img>").attr("class", "card-img-top");
                         img.attr("src", eventPics);
 
@@ -112,10 +102,9 @@ $(document).ready(function () {
                     }
                 }
             }
-
         });
-
     });
+
 
     // Smooth Scrolling Functionality
     $(function () {
