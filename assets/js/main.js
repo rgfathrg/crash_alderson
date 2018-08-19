@@ -83,6 +83,7 @@ $(document).ready(function () {
                             stack: ".card-img-top > div"
                         });
                         var cardBody = $("<div>").attr("class", "card-body");
+                        card.attr("data-type", response._embedded.events[i].dates.start.localDate + "~" + response._embedded.events[i].dates.start.localTime + "~" + response._embedded.events[i].images[0].url + "~" + response._embedded.events[i].name + "~" + response._embedded.events[i].url)
                         var eventDates = response._embedded.events[i].dates.start.localDate;
                         var eventTime = response._embedded.events[i].dates.start.localTime;
                         var eventPics = response._embedded.events[i].images[0].url;
