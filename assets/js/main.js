@@ -131,11 +131,3 @@ $(document).ready(function () {
 });
 
 
-$(".product-list-item").draggable({
-    revert: true, // this means the element won’t remain wherever you drag it
-    revertDuration: 150,
-    stack: ".card-img-top > div"
-});
-$(".idea-board").droppable({
-    accept: '.product-list-item',
-});
