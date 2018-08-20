@@ -12,7 +12,7 @@ $(document).ready(function () {
     $("#goBtn").on("click", function () {
 
         // Variables
-        var cities = ["charlotte", "houston", "san" + " " + "diego", "new" + " " + "york", "san" + " " + "francisco", "orlando", "charleston", "boston", "miami", "tampa", "chicago", "buffalo", "baltimore", "columbus", "cleveland"];
+        var cities = ["charlotte", "houston", "san" + " " + "diego", "new" + " " + "york" + " " + "city", "san" + " " + "francisco", "orlando", "charleston", "boston", "miami", "tampa", "chicago", "buffalo", "baltimore", "columbus", "cleveland", "seattle", "napa", "portland", "honolulu", "sedona", "new" + " " + "orleans", "raleigh", "pittsburgh", "philadelphia", "scranton", "dallas"];
         var queryURL = "https://app.ticketmaster.com/discovery/v2/events.json?apikey=Fst7jzMSw05CNr3UdA1wrZAywnNi0A3j";
         var startDate = "2018-09-01T01:00:00Z";
         var endDate = "2019-07-31T21:59:00Z";
@@ -74,7 +74,6 @@ $(document).ready(function () {
 
                 for (i = 0; i < limit; i++) {
                     if (response._embedded.events[i].id === uniqueId) {
-
                         var card = $("<div>").addClass("card cards col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-3");
                         card.addClass("favorite");
                         var cardBody = $("<div>").attr("class", "card-body");
@@ -88,9 +87,7 @@ $(document).ready(function () {
                             html: "<br>" + "Ticketmaster Link",
                             href: ticketLink
                         });
-                        
-                        
-
+                        link.attr("target", "_blank");
                         var p = $("<p>");
                         p.html(eventTitle + "<br>" + eventDates + "<br>" + eventTime);
                         p.append(link);

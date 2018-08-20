@@ -104,6 +104,7 @@ $(document).ready(function () {
                     html: "<br>" + "Ticketmaster Link",
                     href: whatever.link
                 });
+                link.attr("target", "_blank");
                 var card = $("<div>").addClass("card cards col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-3 title" + [x]);
                 var cardBody = $("<div>").attr("class", "card-body");
                 var p = $("<p>");
