@@ -21,6 +21,7 @@ $(document).ready(function () {
         email = $("#createemail").val();
         password = $("#createpassword").val();
         firebase.auth().createUserWithEmailAndPassword(email, password).then(function () {
+            localStorage.clear();
             window.location.href = '../crash_alderson/index.html';
             number = email.indexOf("@");
             user = email.slice(0, number);
@@ -44,6 +45,7 @@ $(document).ready(function () {
         email = $("#signinemail").val();
         password = $("#signinpassword").val();
         firebase.auth().signInWithEmailAndPassword(email, password).then(function () {
+            localStorage.clear();
             window.location.href = '../crash_alderson/index.html';
             number = email.indexOf("@");
             user = email.slice(0, number);
@@ -64,7 +66,7 @@ $(document).ready(function () {
                         date: eventDates,
                         time: eventTime,
                         image: eventPics,
-                        link: eventTickets
+                        link: eventTickets,
                     };
                     localStorage.setItem('title' + [i], JSON.stringify(obiob));
 
@@ -91,7 +93,11 @@ $(document).ready(function () {
 
             if (localStorage.key(i).includes("title")) {
                 title = localStorage.key(i);
-                x = title.slice(-1);
+                if (title.length ===6)
+                {x = title.slice(-1);}
+                if (title.length === 7) {
+                    x = title.slice(-2)
+                }
                 var whatever = localStorage.getItem('title' + [x]);
                 whatever = JSON.parse(whatever);
                 var link = $("<a/>", {
@@ -132,7 +138,7 @@ firebase.auth().signOut().then(function () {
 });
 $(document).on("click", ".removal", function () {
     removeElement = $(this).data('type');
-    $(removeElement).remove();
+    $("." + removeElement).remove();
     localStorage.removeItem(removeElement);
 })
 $(document).on("click", ".favorite", function () {
