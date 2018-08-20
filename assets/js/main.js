@@ -76,12 +76,7 @@ $(document).ready(function () {
                     if (response._embedded.events[i].id === uniqueId) {
 
                         var card = $("<div>").addClass("card cards col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-3");
-                        card.addClass("product-list-item");
-                        card.draggable({
-                            revert: true, // this means the element won’t remain wherever you drag it
-                            revertDuration: 150,
-                            stack: ".card-img-top > div"
-                        });
+                        card.addClass("favorite");
                         var cardBody = $("<div>").attr("class", "card-body");
                         card.attr("data-type", response._embedded.events[i].dates.start.localDate + "~" + response._embedded.events[i].dates.start.localTime + "~" + response._embedded.events[i].images[0].url + "~" + response._embedded.events[i].name + "~" + response._embedded.events[i].url)
                         var eventDates = response._embedded.events[i].dates.start.localDate;
