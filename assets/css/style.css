@@ -236,3 +236,18 @@ color: white;
   width: 90%;
   padding: 5px;
 }
+
+.spacer{
+  height: 100px;
+}
+
+.fixer{
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 75px;
+}
+
+.removal{
+  width: 15%;
+}

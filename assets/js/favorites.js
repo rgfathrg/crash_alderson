@@ -14,31 +14,21 @@ var config = {
 firebase.initializeApp(config);
 
 var database = firebase.database();
-var connectionsRef = database.ref("/connections");
-var connectedRef = database.ref(".info/connected");
 
-connectedRef.on("value", function (snap) {
-    if (snap.val()) {
-        var con = connectionsRef.push(true);
-        con.onDisconnect().remove();
-        database.ref("logstatus").set("off");
-    };
-});
-
-var email = "jgaghan@gmail.com"
-var password = "tipper4582"
 $(document).ready(function () {
     $("#signup").on("click", function () {
         event.preventDefault();
-        
+        email = $("#createemail").val();
+        password = $("#createpassword").val();
         firebase.auth().createUserWithEmailAndPassword(email, password).then(function () {
             window.location.href = '../crash_alderson/index.html';
-            number = email.indexOf("@")
-            user = email.slice(0, number)
+            number = email.indexOf("@");
+            user = email.slice(0, number);
+            localStorage.setItem("user", user);
             database.ref(user).set({
                 events: "",
                 eventCount: 0,
-            })
+            });
 
             database.ref("logstatus").set("on");
         })
@@ -51,46 +41,129 @@ $(document).ready(function () {
     });
 
     $('#signin').on("click", function () {
+        email = $("#signinemail").val();
+        password = $("#signinpassword").val();
         firebase.auth().signInWithEmailAndPassword(email, password).then(function () {
             window.location.href = '../crash_alderson/index.html';
-            number = email.indexOf("@")
-            user = email.slice(0, number)
+            number = email.indexOf("@");
+            user = email.slice(0, number);
+            localStorage.setItem("user", user);
             database.ref("logstatus").set("on");
-            if (eventidArray!=="") {
-            for (i = 0; i < eventNum; i++) {
+            if (eventidArray !== "") {
+                for (i = 0; i < eventNum; i++) {
                     arr2 = Object.values(eventidArray);
-                    eventString = arr2[i]
+                    eventString = arr2[i];
                     eventArray = eventString.split("~");
-                    eventDates = eventArray[0]
-                    eventTime = eventArray[1]
-                    eventPics = eventArray[2] 
-                    eventTitle = eventArray[3]
-                    eventTickets = eventArray[4]
+                    eventDates = eventArray[0];
+                    eventTime = eventArray[1];
+                    eventPics = eventArray[2];
+                    eventTitle = eventArray[3];
+                    eventTickets = eventArray[4];
+                    var obiob = {
+                        title: eventTitle,
+                        date: eventDates,
+                        time: eventTime,
+                        image: eventPics,
+                        link: eventTickets
+                    };
+                    localStorage.setItem('title' + [i], JSON.stringify(obiob));
+
                 }
             }
 
         })
-    })
+            .catch(function (error) {
+                // Handle Errors here.
+                $("error").text("Incorrect email or password")
+                var errorCode = error.code;
+                var errorMessage = error.message;
+                // ...
+            });
+    });
+});
+
+$(document).ready(function () {
+    if ($(".spacer").length > 0) {
+        var tr = $("<div>").addClass("row");
+        tr.addClass("cardRow");
+        $("#favEvents").append(tr);
+        for (var i = 0; i < localStorage.length; i++) {
+
+            if (localStorage.key(i).includes("title")) {
+                title = localStorage.key(i);
+                x = title.slice(-1);
+                var whatever = localStorage.getItem('title' + [x]);
+                whatever = JSON.parse(whatever);
+                var link = $("<a/>", {
+                    html: "<br>" + "Ticketmaster Link",
+                    href: whatever.link
+                });
+                var card = $("<div>").addClass("card cards col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-3 title" + [x]);
+                var cardBody = $("<div>").attr("class", "card-body");
+                var p = $("<p>");
+                p.html(whatever.title + "<br>" + whatever.date + "<br>" + whatever.time);
+                p.append(link);
+                var img = $("<img>").attr("class", "card-img-top");
+                img.attr("src", whatever.image);
+                var removalButton = $("<button>x</button>")
+                removalButton.addClass("removal mx-auto bg-danger")
+                removalButton.attr("data-type", "title" + [x])
+                cardBody.append(p);
+                card.append(img);
+                card.append(cardBody);
+                card.append(removalButton)
+                tr.append(card);
+                console.log(tr);
+                $("#favEvents").append(tr);
+            }
+        }
+
+    };
 });
 
 firebase.auth().signOut().then(function () {
     // Sign-out successful.
+    // localStorage.clear();
+    if ($(".container").length === 0) {
+        localStorage.clear();
+    }
 }).catch(function (error) {
     // An error happened.
 });
-
+$(document).on("click", ".removal", function () {
+    removeElement = $(this).data('type');
+    $(removeElement).remove();
+    localStorage.removeItem(removeElement);
+})
 $(document).on("click", ".favorite", function () {
     id = $(this).data('type');
-    eventNum++
-    database.ref(user + "/eventCount").set(eventNum)
-    database.ref(user + "/events").push(id)
+    user = localStorage.getItem("user");
+    eventString = id;
+    eventArray = eventString.split("~");
+    eventDates = eventArray[0];
+    eventTime = eventArray[1];
+    eventPics = eventArray[2];
+    eventTitle = eventArray[3];
+    eventTickets = eventArray[4];
+    var obiob = {
+        title: eventTitle,
+        date: eventDates,
+        time: eventTime,
+        image: eventPics,
+        link: eventTickets
+    };
+    localStorage.setItem('title' + [eventNum], JSON.stringify(obiob));
+    eventNum++;
+    database.ref(user + "/eventCount").set(eventNum);
+    database.ref(user + "/events").push(id);
     // database.ref(user + "/events").child(eventNum).set({[eventNum] : id})
 });
 
-database.ref().on("value", function (snap) { 
+database.ref().on("value", function (snap) {
+    user = localStorage.getItem("user");
     if (snap.child(user).exists()) {
         eventidArray = snap.val()[user].events;
-        eventNum = snap.val()[user].eventCount
+        eventNum = snap.val()[user].eventCount;
     }
 })
 
