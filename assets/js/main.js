@@ -12,7 +12,7 @@ $(document).ready(function () {
     $("#goBtn").on("click", function () {
 
         // Variables
-        var cities = ["charlotte", "houston", "san" + " " + "diego", "new" + " " + "york", "san" + " " + "francisco", "orlando", "charleston", "boston", "miami", "tampa", "chicago", "buffalo", "baltimore", "columbus", "cleveland", "dublin", "london"];
+        var cities = ["charlotte", "houston", "san" + " " + "diego", "new" + " " + "york", "san" + " " + "francisco", "orlando", "charleston", "boston", "miami", "tampa", "chicago", "buffalo", "baltimore", "columbus", "cleveland"];
         var queryURL = "https://app.ticketmaster.com/discovery/v2/events.json?apikey=Fst7jzMSw05CNr3UdA1wrZAywnNi0A3j";
         var startDate = "2018-09-01T01:00:00Z";
         var endDate = "2019-07-31T21:59:00Z";
