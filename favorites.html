@@ -1,49 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Travel-O-Lette</title>
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/scrollify/1.0.19/jquery.scrollify.min.js"></script> -->
-
+    <!-- Links -->
     <!-- Bootstrap CDN -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
         crossorigin="anonymous">
-
-    <script src="assets/js/scrollify.js"></script>
-    <!--css-->
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/5.4.0/firebase.js"></script>
+    <!-- Local CSS -->
     <link rel="stylesheet" href="assets/css/style.css">
-
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Maven+Pro" rel="stylesheet">
-
-    <!-- BootStrap js -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    <!-- BootStrap JS Links -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
         crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
         crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
         crossorigin="anonymous"></script>
-
-    <script type="text/javascript" src="assets/js/hotel.js"></script>
+    <!-- Local JS Files -->
     <script type="text/javascript" src="assets/js/main.js"></script>
+    <script type="text/javascript" src="assets/js/hotel.js"></script>
     <script type="text/javascript" src="assets/js/favorites.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <!-- Google API -->
+    <!-- Google Maps API -->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAXv1-mQ0mvMyr3qgiToPgTKcTNJVXMysk&libraries=places&callback=initMap"
         async defer></script>
+    <!-- Font Awesome Library -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ"
+        crossorigin="anonymous">
 </head>
-
-<title>Document</title>
-</head>
-
 <body>
     <!-- Navbar -->
     <nav class="navbar bg-dark navbar-dark" id="navbar">
         <!-- Brand -->
-        <a class="navbar-brand" href="#" id="brand">Travel-O-Lette</a>
+        <a class="navbar-brand" href="../crash_alderson/index.html" id="brand">Travel-O-Lette</a>
         <!-- Toggler/collapsible Button -->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
             <span class="navbar-toggler-icon"></span>
@@ -52,23 +46,44 @@
         <div class="collapse navbar-collapse" id="collapsibleNavbar">
             <ul class="navbar-nav">
                 <li class="nav-item text-right nav-link">
-                    <a class="nav-link" style="color:white;" href="../crash_alderson/index.html">Home</a>
+                    <a class="nav-link"  href="../crash_alderson/index.html">
+                        <i class="fas fa-home"></i> Home</a>
                 </li>
                 <li class="nav-item text-right nav-link">
-                    <a class="nav-link" style="color:white;" href="../crash_alderson/favorites.html">Trips</a>
+                    <a class="nav-link"  href="../crash_alderson/favorites.html">
+                        <i class="fas fa-star"></i> Favorites</a>
                 </li>
                 <l1 class="nav-item text-right nav-link">
-                    <a class="nav-link" style="color: white;" href="../crash_alderson/sign-in.html">Sign-In</a>
+                    <a class="nav-link"  href="../crash_alderson/sign-in.html">
+                        <i class="fas fa-sign-in-alt"></i> Sign-In</a>
                 </l1>
                 <l1 class="nav-item text-right nav-link">
-                    <a class="nav-link" style="color: white;" href="../crash_alderson/sign-in.html">Sign-Up</a>
+                    <a class="nav-link" href="../crash_alderson/create-account.html">
+                        <i class="fas fa-clipboard"></i> Register</a>
                 </l1>
             </ul>
         </div>
     </nav>
-    <div id="favorites" class="container">
-
+    <!-- Favorites -->
+    <div id="favorites">
+        <div class="row spacer"></div>
+        <div class="container">
+            <div class="card">
+                <div class="card-header text-center">
+                    <h1>Favorites</h1>
+                </div>
+                <div class="card-body">
+                    <div id="favEvents" class="row"></div>
+                </div>
+            </div>
+        </div>
+        <div class="row spacer"></div>
     </div>
+    <!-- Footer -->
+    <footer class="footer bg-dark text-light">
+        <div class="col-sm-12 text-center">
+            <span id="footerSpan">Travel-O-Lette &copy; 2018</span>
+        </div>
+    </footer>
 </body>
-
 </html>
