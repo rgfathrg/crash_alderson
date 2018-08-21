@@ -76,8 +76,10 @@ $(document).ready(function () {
         })
             .catch(function (error) {
                 // Handle Errors here.
+
                 $("#error").text("Incorrect email or password")
                 $("#error").css({ "color": "red" })
+
                 var errorCode = error.code;
                 var errorMessage = error.message;
                 // ...
@@ -104,6 +106,9 @@ $(document).ready(function () {
                     html: "<br>" + "Ticketmaster Link",
                     href: whatever.link
                 });
+
+                link.attr("target", "_blank");
+
                 var card = $("<div>").addClass("card cards col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-3 title" + [x]);
                 var cardBody = $("<div>").attr("class", "card-body");
                 var p = $("<p>");
@@ -111,6 +116,7 @@ $(document).ready(function () {
                 p.append(link);
                 var img = $("<img>").attr("class", "card-img-top");
                 img.attr("src", whatever.image);
+
                 var removalButton = $("<button>x</button>");
                 removalButton.addClass("removal mx-auto bg-danger");
                 removalButton.attr("data-type", "title" + [x]);
@@ -118,6 +124,7 @@ $(document).ready(function () {
                 card.append(img);
                 card.append(cardBody);
                 card.append(removalButton);
+
                 tr.append(card);
                 console.log(tr);
                 $("#favEvents").append(tr);

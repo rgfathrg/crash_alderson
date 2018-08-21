@@ -175,10 +175,12 @@ p {
   height: 100vh;
   overflow-y: 0;
 }
+
 /* Favorites */
 #favCard {
   box-shadow: 0px 0px 3px 1px;
 }
+
 /* Footer */
 .footer {
   position: relative;

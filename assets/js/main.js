@@ -69,7 +69,6 @@ $(document).ready(function () {
 
                 for (i = 0; i < limit; i++) {
                     if (response._embedded.events[i].id === uniqueId) {
-
                         var card = $("<div>").addClass("card cards col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-3");
                         card.addClass("favorite");
                         var cardBody = $("<div>").attr("class", "card-body");
@@ -84,6 +83,8 @@ $(document).ready(function () {
                             href: ticketLink
                         });
 
+                        link.attr("target", "_blank");
+                      
                         var p = $("<p>");
                         p.html(eventTitle + "<br>" + eventDates + "<br>" + eventTime);
                         p.append(link);
@@ -99,6 +100,7 @@ $(document).ready(function () {
             }
         });
     });
+
 
     // Smooth Scrolling Functionality
     $(function () {
