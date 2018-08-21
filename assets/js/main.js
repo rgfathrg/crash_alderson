@@ -1,10 +1,5 @@
 $(document).ready(function () {
 
-    // Refresh the page when clicking on brand in the navbar
-    $("#brand").click(function () {
-        document.location.reload(true);
-    });
-
     var uniCity = [];
     var limit = 25;
 
@@ -87,7 +82,9 @@ $(document).ready(function () {
                             html: "<br>" + "Ticketmaster Link",
                             href: ticketLink
                         });
+
                         link.attr("target", "_blank");
+                      
                         var p = $("<p>");
                         p.html(eventTitle + "<br>" + eventDates + "<br>" + eventTime);
                         p.append(link);
@@ -120,7 +117,4 @@ $(document).ready(function () {
             }
         });
     });
-
 });
-
-

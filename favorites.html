@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -26,13 +27,12 @@
     <script type="text/javascript" src="assets/js/main.js"></script>
     <script type="text/javascript" src="assets/js/hotel.js"></script>
     <script type="text/javascript" src="assets/js/favorites.js"></script>
-    <!-- Google Maps API -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAXv1-mQ0mvMyr3qgiToPgTKcTNJVXMysk&libraries=places&callback=initMap"
-        async defer></script>
+
     <!-- Font Awesome Library -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ"
         crossorigin="anonymous">
 </head>
+
 <body>
     <!-- Navbar -->
     <nav class="navbar bg-dark navbar-dark" id="navbar">
@@ -46,21 +46,21 @@
         <div class="collapse navbar-collapse" id="collapsibleNavbar">
             <ul class="navbar-nav">
                 <li class="nav-item text-right nav-link">
-                    <a class="nav-link"  href="../crash_alderson/index.html">
+                    <a class="nav-link" href="../crash_alderson/index.html">
                         <i class="fas fa-home"></i> Home</a>
                 </li>
                 <li class="nav-item text-right nav-link">
-                    <a class="nav-link"  href="../crash_alderson/favorites.html">
+                    <a class="nav-link" href="../crash_alderson/favorites.html">
                         <i class="fas fa-star"></i> Favorites</a>
                 </li>
-                <l1 class="nav-item text-right nav-link">
-                    <a class="nav-link"  href="../crash_alderson/sign-in.html">
+                <li class="nav-item text-right nav-link">
+                    <a class="nav-link" href="../crash_alderson/sign-in.html">
                         <i class="fas fa-sign-in-alt"></i> Sign-In</a>
-                </l1>
-                <l1 class="nav-item text-right nav-link">
+                </li>
+                <li class="nav-item text-right nav-link">
                     <a class="nav-link" href="../crash_alderson/create-account.html">
                         <i class="fas fa-clipboard"></i> Register</a>
-                </l1>
+                </li>
             </ul>
         </div>
     </nav>
@@ -68,7 +68,7 @@
     <div id="favorites">
         <div class="row spacer"></div>
         <div class="container">
-            <div class="card">
+            <div class="card" id="favCard">
                 <div class="card-header text-center">
                     <h1>Favorites</h1>
                 </div>
@@ -86,4 +86,5 @@
         </div>
     </footer>
 </body>
+
 </html>
