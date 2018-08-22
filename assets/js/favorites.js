@@ -61,16 +61,19 @@ $(document).ready(function () {
                     eventPics = eventArray[2];
                     eventTitle = eventArray[3];
                     eventTickets = eventArray[4];
+                    eventCity = eventArray[5];
                     var obiob = {
                         title: eventTitle,
                         date: eventDates,
                         time: eventTime,
                         image: eventPics,
                         link: eventTickets,
+                        city: eventCity
                     };
                     localStorage.setItem('title' + [i], JSON.stringify(obiob));
 
                 }
+
             }
 
         })
@@ -108,19 +111,24 @@ $(document).ready(function () {
                 });
 
                 link.attr("target", "_blank");
-
+                  
                 var card = $("<div>").addClass("card cards col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-3 title" + [x]);
                 var cardBody = $("<div>").attr("class", "card-body");
+                var h = $("<h3>");
+                h.addClass("favCity");
+                h.html(whatever.city);
                 var p = $("<p>");
                 p.html(whatever.title + "<br>" + whatever.date + "<br>" + whatever.time);
                 p.append(link);
                 var img = $("<img>").attr("class", "card-img-top");
                 img.attr("src", whatever.image);
+                
 
-                var removalButton = $("<button>x</button>");
-                removalButton.addClass("removal mx-auto bg-danger");
+                var removalButton = $("<button>Remove Event</button>");
+                removalButton.addClass("removal mx-auto");
                 removalButton.attr("data-type", "title" + [x]);
                 cardBody.append(p);
+                card.append(h);
                 card.append(img);
                 card.append(cardBody);
                 card.append(removalButton);
@@ -133,6 +141,8 @@ $(document).ready(function () {
 
     };
 });
+
+
 
 firebase.auth().signOut().then(function () {
     // Sign-out successful.
@@ -158,12 +168,14 @@ $(document).on("click", ".favorite", function () {
     eventPics = eventArray[2];
     eventTitle = eventArray[3];
     eventTickets = eventArray[4];
+    eventCity = eventArray[5];
     var obiob = {
         title: eventTitle,
         date: eventDates,
         time: eventTime,
         image: eventPics,
-        link: eventTickets
+        link: eventTickets,
+        city: eventCity,
     };
     localStorage.setItem('title' + [eventNum], JSON.stringify(obiob));
     eventNum++;

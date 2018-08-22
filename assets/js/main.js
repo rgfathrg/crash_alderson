@@ -72,7 +72,9 @@ $(document).ready(function () {
                         var card = $("<div>").addClass("card cards col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-3");
                         card.addClass("favorite");
                         var cardBody = $("<div>").attr("class", "card-body");
-                        card.attr("data-type", response._embedded.events[i].dates.start.localDate + "~" + response._embedded.events[i].dates.start.localTime + "~" + response._embedded.events[i].images[0].url + "~" + response._embedded.events[i].name + "~" + response._embedded.events[i].url)
+                        card.attr("data-type", response._embedded.events[i].dates.start.localDate + "~" + response._embedded.events[i].dates.start.localTime + "~" + response._embedded.events[i].images[0].url + "~" + response._embedded.events[i].name + "~" + response._embedded.events[i].url + "~" + response._embedded.events[i]._embedded.venues[0].city.name);
+                        console.log(response._embedded.events[i]._embedded.venues[0].city.name);
+                        
                         var eventDates = response._embedded.events[i].dates.start.localDate;
                         var eventTime = response._embedded.events[i].dates.start.localTime;
                         var eventPics = response._embedded.events[i].images[0].url;
