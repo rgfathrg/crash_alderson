@@ -5,24 +5,27 @@ body {
 }
 /* Navbar */
 #navbar {
-position: fixed;
-z-index: 1000;
-width: 100%;
-left: 0;
-top: 0;
-opacity: .75;
+  position: fixed;
+  z-index: 1000;
+  width: 100%;
+  left: 0;
+  top: 0;
+  opacity: .75;
 }
 #brand {
-background: red;
-padding: 3px;
-border-radius: 3px;
+  background: red;
+  padding: 3px;
+  border-radius: 3px;
 }
 #navBtn {
-background: black;
+  background: black;
+}
+.nav-link {
+  padding: 5px 0px 0px 0px;
 }
 /* Carousel Wrapper*/
 #landingWrapper {
-position: relative;
+  position: relative;
 }
 #goCard {
   position: absolute;
@@ -34,147 +37,107 @@ position: relative;
   border: none;
 }
 #goBtn {
-margin-top: 20px;
-padding: 10px 50px 10px 50px;
-color: white;
-font-weight: bold;
-font-size: 20px;
+  margin-top: 20px;
+  padding: 10px 50px 10px 50px;
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
 }
 #go:hover {
-box-shadow: 0px 0px 5px 2px white;
-cursor: pointer;
+  box-shadow: 0px 0px 5px 2px white;
+  cursor: pointer;
 }
 #carouselInner {
-max-height : 100vh;
-max-width : 100%;
-box-shadow: 0px 0px 5px 3px black;
-position: relative;
-top: 0;
+  max-height : 100vh;
+  max-width : 100%;
+  box-shadow: 0px 0px 5px 3px black;
+  position: relative;
+  top: 0;
 }
 /* Main Map/Hotel Wrapper */
 #hotelWrapper {
   position: relative;
   max-height: 100%;
   background: url("../img/funky-lines.png");
+  z-index: 501;
 }
 #cityBanner {
-  /* position: relative; */
   margin-top: 40px;
   margin-bottom: 20px;
 }
 /* Banners */
 #bannerRow {
-position: relative;
+  position: relative;
 }
 .banner {
-font-size: 40px;
-font-weight: bold;
+  font-size: 40px;
+  font-weight: bold;
 }
 .banner-glow-light {
-box-shadow: 0px 0px 5px 2px white;
-border: none;
-padding: 0;
+  box-shadow: 0px 0px 5px 2px white;
+  border: none;
+  padding: 0;
 }
 .banner-glow-dark {
-box-shadow: 0px 0px 5px 2px black;
-border: none;
-padding: 0;
+  box-shadow: 0px 0px 5px 2px black;
+  border: none;
+  padding: 0;
 }
 #hotelBanner {
-margin-top: 40px;
-margin-bottom: 40px;
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+.pSmall {
+  font-size: 16px;
+}
+p {
+  margin-bottom: 0;
 }
 /* Map Styling */
 #mapRow {
-position: static !important;
-top: 1000px;
+  position: static !important;
+  top: 1000px;
 }
 #mapCard {
-overflow: hidden;
-justify-content: center;
-height: 450px;
+  overflow: hidden;
+  justify-content: center;
+  height: 450px;
 }
 #map {
-position: static !important;
+  position: static !important;
 }
-/* Random Google Styling */
-#listing {
-/* position: absolute; */
-width: 200px;
-height: 470px;
-overflow: auto;
-left: 442px;
-top: 0px;
-cursor: pointer;
-overflow-x: hidden;
-}
-#findhotels {
-/* position: absolute; */
-text-align: right;
-width: 100px;
-font-size: 14px;
-padding: 4px;
-z-index: 5;
-background-color: #fff;
-}
-#locationField {
-position: absolute;
-width: 190px;
-height: 25px;
-left: 108px;
-top: 0px;
-z-index: 5;
-background-color: #fff;
-}
-#controls {
-position: relative;
-left: 35px;
-width: 140px;
-top: 0px;
-z-index: 5;
-background-color: #fff;
-}
-#autocomplete {
-width: 100%;
-}
-#country {
-width: 100%;
-}
-.placeIcon {
-width: 20px;
-height: 34px;
-margin: 4px;
-}
+/* Google Styling */
 .hotelIcon {
-width: 24px;
-height: 24px;
+  width: 24px;
+  height: 24px;
 }
 #resultsTable {
-border-collapse: collapse;
-width: 240px;
+  border-collapse: collapse;
+  width: 240px;
+  text-align: left;
 }
 #rating {
-font-size: 13px;
-font-family: Arial Unicode MS;
+  font-size: 13px;
+  font-family: Arial Unicode MS;
 }
 .iw_table_row {
-height: 18px;
+  height: 18px;
 }
 .iw_attribute_name {
-font-weight: bold;
-text-align: right;
+  font-weight: bold;
+  text-align: right;
 }
 .iw_table_icon {
-text-align: right;
+  text-align: right;
 }
 /* Event Wrapper */
 #eventsWrapper {
-position: relative;
-background: url("../img/ep_naturalblack.png");
+  position: relative;
+  background: url("../img/ep_naturalblack.png");
 }
 #eventBanner {
-margin-top: 40px;
-margin-bottom: 40px;
+  margin-top: 40px;
+  margin-bottom: 40px;
 }
 .cards {
   margin: 10px;
@@ -187,7 +150,6 @@ margin-bottom: 40px;
   font-weight: bold;
   overflow: hidden;
 }
-
 .btn-cards {
   margin: 10px;
   box-shadow: 0px 0px 4px 2px white;
@@ -200,47 +162,59 @@ margin-bottom: 40px;
   background: white;
 }
 .cardRow {
-justify-content: center;
+  justify-content: center;
+  margin-bottom: 20px;
 }
 #cardSection {
-box-sizing: border-box;
-overflow: hidden;
+  box-sizing: border-box;
+  overflow: hidden;
 }
 /* Event Styling */
 #eventSection {
-background: url("../img/funky-lines.png");
-height: 100vh;
-overflow-y: 0;
+  background: url("../img/funky-lines.png");
+  height: 100vh;
+  overflow-y: 0;
 }
 /* Footer */
 .footer {
-background: url("../img/ep_naturalblack.png");
-height: 100px;
-position: relative;
+  position: relative;
+  width: 100%;
+  height: 50px;
+  bottom: 0;
 }
 #footerSpan {
-font-weight: bold;
-font-size: 25px;
-color: white;
+  font-weight: bold;
+  font-size: 20px;
 }
-
+.fixer{
+  position: fixed;
+  bottom: 0;
+}
+/* Favorites */
+#favorites {
+  background: url("../../../crash_alderson/assets/img/funky-lines.png");
+}
+/* Random */
 #fojumbo {
   background: url("../img/funky-lines.png");
-  height: 100hv;
-  position: relative;
-  bottom: 0;
+  height: 100vh;
 }
-
-#form {
+/* Forms */
+.formCards {
   background-color: white;
   position: relative;
-  width: 90%;
-  padding: 5px;
+  width: 100%;
+  padding: 15px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 3px 1px;
+  margin-top: 20vh;
 }
-
-#signFooter {
-  position: relative;
-  left: 0;
-  bottom: 0;
-  margin: 0;
+.noPad {
+  padding: 0;
+}
+.spacer{
+  height: 100px;
+}
+.removal{
+  width: 15%;
 }
