@@ -229,7 +229,7 @@ p {
   text-decoration: underline;
 }
 .fixer{
-  position: absolute;
+  position: fixed;
   bottom: 0;
   width: 100%;
 }
