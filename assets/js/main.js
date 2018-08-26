@@ -57,16 +57,13 @@ $(document).ready(function () {
 
             // Loops through the events and adds them to the event rows
             for (var i = 0; i < events.length; i++) {
-
                 var eventTitle = events[i].name;
                 var id = events[i].id;
                 uniCity[eventTitle] = id;
-
             };
             //loops through associative array to limit duplicated events
             for (var key in uniCity) {
                 uniqueId = uniCity[key];
-
                 for (i = 0; i < limit; i++) {
                     if (response._embedded.events[i].id === uniqueId) {
                         var card = $("<div>").addClass("card cards col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-3");
@@ -74,7 +71,6 @@ $(document).ready(function () {
                         var cardBody = $("<div>").attr("class", "card-body");
                         card.attr("data-type", response._embedded.events[i].dates.start.localDate + "~" + response._embedded.events[i].dates.start.localTime + "~" + response._embedded.events[i].images[0].url + "~" + response._embedded.events[i].name + "~" + response._embedded.events[i].url + "~" + response._embedded.events[i]._embedded.venues[0].city.name);
                         console.log(response._embedded.events[i]._embedded.venues[0].city.name);
-                        
                         var eventDates = response._embedded.events[i].dates.start.localDate;
                         var eventTime = response._embedded.events[i].dates.start.localTime;
                         var eventPics = response._embedded.events[i].images[0].url;
@@ -84,15 +80,12 @@ $(document).ready(function () {
                             html: "<br>" + "Ticketmaster Link",
                             href: ticketLink
                         });
-
                         link.attr("target", "_blank");
-                      
                         var p = $("<p>");
                         p.html(eventTitle + "<br>" + eventDates + "<br>" + eventTime);
                         p.append(link);
                         var img = $("<img>").attr("class", "card-img-top");
                         img.attr("src", eventPics);
-
                         cardBody.append(p);
                         card.append(img);
                         card.append(cardBody);

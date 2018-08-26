@@ -11,6 +11,7 @@ var config = {
     storageBucket: "firstproject-677f1.appspot.com",
     messagingSenderId: "692825618956"
 };
+
 firebase.initializeApp(config);
 
 var database = firebase.database();
@@ -52,10 +53,8 @@ $(document).ready(function () {
         })
             .catch(function (error) {
                 // Handle Errors here.
-
                 $("#error").text("Incorrect email or password")
                 $("#error").css({ "color": "red" })
-
                 var errorCode = error.code;
                 var errorMessage = error.message;
                 // ...
@@ -69,10 +68,11 @@ $(document).ready(function () {
         tr.addClass("cardRow");
         $("#favEvents").append(tr);
         for (var i = 0; i < localStorage.length; i++) {
-
             if (localStorage.key(i).includes("title")) {
                 title = localStorage.key(i);
-                if (title.length === 6) { x = title.slice(-1); }
+                if (title.length === 6) { 
+                    x = title.slice(-1); 
+                }
                 if (title.length === 7) {
                     x = title.slice(-2)
                 }
@@ -82,9 +82,7 @@ $(document).ready(function () {
                     html: "<br>" + "Ticketmaster Link",
                     href: whatever.link
                 });
-
                 link.attr("target", "_blank");
-                  
                 var card = $("<div>").addClass("card cards col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-3 title" + [x]);
                 var cardBody = $("<div>").attr("class", "card-body");
                 var h = $("<h3>");
@@ -95,8 +93,6 @@ $(document).ready(function () {
                 p.append(link);
                 var img = $("<img>").attr("class", "card-img-top");
                 img.attr("src", whatever.image);
-                
-
                 var removalButton = $("<button>Remove Event</button>");
                 removalButton.addClass("removal mx-auto");
                 removalButton.attr("data-type", "title" + [x]);
@@ -105,7 +101,6 @@ $(document).ready(function () {
                 card.append(img);
                 card.append(cardBody);
                 card.append(removalButton);
-
                 tr.append(card);
                 console.log(tr);
                 $("#favEvents").append(tr);
@@ -115,14 +110,12 @@ $(document).ready(function () {
     };
 });
 
-
-
 firebase.auth().signOut().then(function () {
     // Sign-out successful.
-    console.log("signingout")
 }).catch(function (error) {
     // An error happened.
 });
+
 $(document).on("click", ".removal", function () {
     removeElement = $(this).data('type');
     var getElement = localStorage.getItem(removeElement);
@@ -132,6 +125,7 @@ $(document).on("click", ".removal", function () {
     localStorage.removeItem(removeElement);
     database.ref(user + "/events" + "/" + elementKey).remove();
 })
+
 $(document).on("click", ".favorite", function () {
     id = $(this).data('type');
     user = localStorage.getItem("user");
@@ -147,11 +141,8 @@ $(document).on("click", ".favorite", function () {
     database.ref(user + "/eventCount").set(eventNum);
     var push = database.ref(user + "/events").push(id);
     var getPush = push.key;
-    
     eventArray.push(getPush);
-    
     eventKey = eventArray[6];
-    
     var obiob = {
         title: eventTitle,
         date: eventDates,
