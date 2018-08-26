@@ -191,3 +191,7 @@ database.ref().on("value", function (snap) {
         eventNum = snap.val()[user].eventCount;
     }
 });
+
+$(document).on("click", "#signout", function () {
+    localStorage.clear();
+});
