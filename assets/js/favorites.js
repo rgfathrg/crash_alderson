@@ -125,8 +125,12 @@ firebase.auth().signOut().then(function () {
 });
 $(document).on("click", ".removal", function () {
     removeElement = $(this).data('type');
+    var getElement = localStorage.getItem(removeElement);
+    getElement = JSON.parse(getElement);
+    var elementKey = getElement.key;
     $("." + removeElement).remove();
     localStorage.removeItem(removeElement);
+    database.ref(user + "/events" + "/" + elementKey).remove();
 })
 $(document).on("click", ".favorite", function () {
     id = $(this).data('type');
@@ -139,6 +143,15 @@ $(document).on("click", ".favorite", function () {
     eventTitle = eventArray[3];
     eventTickets = eventArray[4];
     eventCity = eventArray[5];
+    eventNum++;
+    database.ref(user + "/eventCount").set(eventNum);
+    var push = database.ref(user + "/events").push(id);
+    var getPush = push.key;
+    
+    eventArray.push(getPush);
+    
+    eventKey = eventArray[6];
+    
     var obiob = {
         title: eventTitle,
         date: eventDates,
@@ -146,11 +159,9 @@ $(document).on("click", ".favorite", function () {
         image: eventPics,
         link: eventTickets,
         city: eventCity,
+        key: eventKey
     };
     localStorage.setItem('title' + [eventNum], JSON.stringify(obiob));
-    eventNum++;
-    database.ref(user + "/eventCount").set(eventNum);
-    database.ref(user + "/events").push(id);
     // database.ref(user + "/events").child(eventNum).set({[eventNum] : id})
 });
 
