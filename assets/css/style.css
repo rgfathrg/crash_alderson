@@ -228,3 +228,8 @@ p {
 .favCity {
   text-decoration: underline;
 }
+.fixer{
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
