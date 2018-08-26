@@ -21,7 +21,6 @@ $(document).ready(function () {
         email = $("#createemail").val();
         password = $("#createpassword").val();
         firebase.auth().createUserWithEmailAndPassword(email, password).then(function () {
-            localStorage.clear();
             window.location.href = '../crash_alderson/index.html';
             number = email.indexOf("@");
             user = email.slice(0, number);
@@ -45,37 +44,11 @@ $(document).ready(function () {
         email = $("#signinemail").val();
         password = $("#signinpassword").val();
         firebase.auth().signInWithEmailAndPassword(email, password).then(function () {
-            localStorage.clear();
             window.location.href = '../crash_alderson/index.html';
             number = email.indexOf("@");
             user = email.slice(0, number);
             localStorage.setItem("user", user);
             database.ref("logstatus").set("on");
-            if (eventidArray !== "") {
-                for (i = 0; i < eventNum; i++) {
-                    arr2 = Object.values(eventidArray);
-                    eventString = arr2[i];
-                    eventArray = eventString.split("~");
-                    eventDates = eventArray[0];
-                    eventTime = eventArray[1];
-                    eventPics = eventArray[2];
-                    eventTitle = eventArray[3];
-                    eventTickets = eventArray[4];
-                    eventCity = eventArray[5];
-                    var obiob = {
-                        title: eventTitle,
-                        date: eventDates,
-                        time: eventTime,
-                        image: eventPics,
-                        link: eventTickets,
-                        city: eventCity
-                    };
-                    localStorage.setItem('title' + [i], JSON.stringify(obiob));
-
-                }
-
-            }
-
         })
             .catch(function (error) {
                 // Handle Errors here.
@@ -146,10 +119,7 @@ $(document).ready(function () {
 
 firebase.auth().signOut().then(function () {
     // Sign-out successful.
-    // localStorage.clear();
-    if ($(".container").length === 0) {
-        localStorage.clear();
-    }
+    console.log("signingout")
 }).catch(function (error) {
     // An error happened.
 });
@@ -200,5 +170,33 @@ database.ref().on("value", function (snap) {
     if (snap.child(user).exists()) {
         eventidArray = snap.val()[user].events;
         eventNum = snap.val()[user].eventCount;
+        if (eventidArray !== "") {
+            for (i = 0; i < eventNum; i++) {
+                arr2 = Object.values(eventidArray);
+                eventString = arr2[i];
+                eventArray = eventString.split("~");
+                eventDates = eventArray[0];
+                eventTime = eventArray[1];
+                eventPics = eventArray[2];
+                eventTitle = eventArray[3];
+                eventTickets = eventArray[4];
+                eventCity = eventArray[5];
+                var obiob = {
+                    title: eventTitle,
+                    date: eventDates,
+                    time: eventTime,
+                    image: eventPics,
+                    link: eventTickets,
+                    city: eventCity
+                };
+                localStorage.setItem('title' + [i], JSON.stringify(obiob));
+
+            }
+
+        }
     }
+});
+
+$(document).on("click", "#signout", function () {
+    localStorage.clear();
 });
