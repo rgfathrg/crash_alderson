@@ -1,5 +1,6 @@
 var user;
 var eventNum;
+var signon = false;
 var eventidArray;
 var queryURL = "https://app.ticketmaster.com/discovery/v2/events.json?apikey=Fst7jzMSw05CNr3UdA1wrZAywnNi0A3j";
 
@@ -121,6 +122,7 @@ $(document).on("click", ".removal", function () {
     var getElement = localStorage.getItem(removeElement);
     getElement = JSON.parse(getElement);
     var elementKey = getElement.key;
+    console.log(elementKey);
     $("." + removeElement).remove();
     localStorage.removeItem(removeElement);
     database.ref(user + "/events" + "/" + elementKey).remove();
@@ -156,12 +158,14 @@ $(document).on("click", ".favorite", function () {
     // database.ref(user + "/events").child(eventNum).set({[eventNum] : id})
 });
 
+
 database.ref().on("value", function (snap) {
     user = localStorage.getItem("user");
     if (snap.child(user).exists()) {
         eventidArray = snap.val()[user].events;
         eventNum = snap.val()[user].eventCount;
-        if (eventidArray !== "") {
+        if (eventidArray !== "" && signon===false) {
+            signon = true;
             for (i = 0; i < eventNum; i++) {
                 arr2 = Object.values(eventidArray);
                 eventString = arr2[i];
@@ -190,4 +194,5 @@ database.ref().on("value", function (snap) {
 
 $(document).on("click", "#signout", function () {
     localStorage.clear();
+    signon = false;
 });
