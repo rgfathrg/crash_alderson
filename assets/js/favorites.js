@@ -29,6 +29,7 @@ $(document).ready(function () {
             localStorage.setItem("user", user);
             database.ref(user).set({
                 events: "",
+                signon: true,
                 eventCount: 0,
             });
 
@@ -71,8 +72,8 @@ $(document).ready(function () {
         for (var i = 0; i < localStorage.length; i++) {
             if (localStorage.key(i).includes("title")) {
                 title = localStorage.key(i);
-                if (title.length === 6) { 
-                    x = title.slice(-1); 
+                if (title.length === 6) {
+                    x = title.slice(-1);
                 }
                 if (title.length === 7) {
                     x = title.slice(-2)
@@ -118,14 +119,16 @@ firebase.auth().signOut().then(function () {
 });
 
 $(document).on("click", ".removal", function () {
+
     removeElement = $(this).data('type');
     var getElement = localStorage.getItem(removeElement);
     getElement = JSON.parse(getElement);
     var elementKey = getElement.key;
-    console.log(elementKey);
     $("." + removeElement).remove();
     localStorage.removeItem(removeElement);
     database.ref(user + "/events" + "/" + elementKey).remove();
+    eventNum--;
+    database.ref(`${user}/eventCount`).set(eventNum)
 })
 
 $(document).on("click", ".favorite", function () {
@@ -158,14 +161,13 @@ $(document).on("click", ".favorite", function () {
     // database.ref(user + "/events").child(eventNum).set({[eventNum] : id})
 });
 
-
 database.ref().on("value", function (snap) {
     user = localStorage.getItem("user");
     if (snap.child(user).exists()) {
         eventidArray = snap.val()[user].events;
         eventNum = snap.val()[user].eventCount;
-        if (eventidArray !== "" && signon===false) {
-            signon = true;
+        if (eventidArray !== "" && snap.val()[user].signon === false) {
+            database.ref(`${user}/signon`).set(true);
             for (i = 0; i < eventNum; i++) {
                 arr2 = Object.values(eventidArray);
                 eventString = arr2[i];
@@ -194,5 +196,5 @@ database.ref().on("value", function (snap) {
 
 $(document).on("click", "#signout", function () {
     localStorage.clear();
-    signon = false;
+    database.ref(`${user}/signon`).set(false);
 });
