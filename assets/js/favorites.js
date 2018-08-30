@@ -1,5 +1,6 @@
 var user;
 var eventNum;
+var signon = false;
 var eventidArray;
 var queryURL = "https://app.ticketmaster.com/discovery/v2/events.json?apikey=Fst7jzMSw05CNr3UdA1wrZAywnNi0A3j";
 
@@ -28,6 +29,7 @@ $(document).ready(function () {
             localStorage.setItem("user", user);
             database.ref(user).set({
                 events: "",
+                signon: true,
                 eventCount: 0,
             });
 
@@ -70,8 +72,8 @@ $(document).ready(function () {
         for (var i = 0; i < localStorage.length; i++) {
             if (localStorage.key(i).includes("title")) {
                 title = localStorage.key(i);
-                if (title.length === 6) { 
-                    x = title.slice(-1); 
+                if (title.length === 6) {
+                    x = title.slice(-1);
                 }
                 if (title.length === 7) {
                     x = title.slice(-2)
@@ -117,6 +119,7 @@ firebase.auth().signOut().then(function () {
 });
 
 $(document).on("click", ".removal", function () {
+
     removeElement = $(this).data('type');
     var getElement = localStorage.getItem(removeElement);
     getElement = JSON.parse(getElement);
@@ -124,6 +127,8 @@ $(document).on("click", ".removal", function () {
     $("." + removeElement).remove();
     localStorage.removeItem(removeElement);
     database.ref(user + "/events" + "/" + elementKey).remove();
+    eventNum--;
+    database.ref(`${user}/eventCount`).set(eventNum)
 })
 
 $(document).on("click", ".favorite", function () {
@@ -161,7 +166,8 @@ database.ref().on("value", function (snap) {
     if (snap.child(user).exists()) {
         eventidArray = snap.val()[user].events;
         eventNum = snap.val()[user].eventCount;
-        if (eventidArray !== "") {
+        if (eventidArray !== "" && snap.val()[user].signon === false) {
+            database.ref(`${user}/signon`).set(true);
             for (i = 0; i < eventNum; i++) {
                 arr2 = Object.values(eventidArray);
                 eventString = arr2[i];
@@ -190,4 +196,5 @@ database.ref().on("value", function (snap) {
 
 $(document).on("click", "#signout", function () {
     localStorage.clear();
+    database.ref(`${user}/signon`).set(false);
 });
